@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.StreamingHttpOutputMessage;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -28,19 +30,19 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
-    @RequestMapping("/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity findAll(){
         List<Job> jobs = jobService.selectList(new EntityWrapper<>());
         return new ResponseEntity(jobs, HttpStatus.OK);
     }
 
-    @RequestMapping("/insert")
+    @PostMapping("/insert")
     public ResponseEntity insert(Job job){
         jobService.insert(job);
         return new ResponseEntity( HttpStatus.OK);
     }
 
-    @RequestMapping("page")
+    @GetMapping("page")
     public ResponseEntity page(Job job, Page page){
         page=jobService.pageList(job,page);
         return new ResponseEntity(page,HttpStatus.OK);
