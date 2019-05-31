@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-public class Swagger2 {
+public class SwaggerConfig {
 
     @Value("${swagger.basePackage}")
     private String basePackage;

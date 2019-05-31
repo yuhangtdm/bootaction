@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
     public void update(String name, Integer id) {
         logger.info("更新用户姓名，id:{},name:{}",id,name);
     }
+
+    @Override
+    public User findById(long id) {
+        return null;
+    }
 }

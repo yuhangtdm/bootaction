@@ -19,4 +19,7 @@ public interface UserService {
     void save(String name);
     // 更新
     void update(String name, Integer id);
+
+    User findById(long id);
+
 }
