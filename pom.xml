@@ -22,7 +22,13 @@
 	</properties>
 
 	<dependencies>
-
+		<!--
+		该包是应用springboot必须配置的包 几乎所有的模块都有用到该模块
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		-->
 		<!-- 整合springmvc模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,10 +95,22 @@
 			<version>1.8.2</version>
 		</dependency>
 
+		<!-- springboot整合缓存 目的是在业务方法上使用缓存 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
 		<!-- springboot整合redis 使用的jedis版本是2.9.0 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+		<!-- 用于springboot的配置文件和配置类进行绑定时做提示 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring‐boot‐configuration‐processor</artifactId>
 		</dependency>
 
 		<!--<dependency>

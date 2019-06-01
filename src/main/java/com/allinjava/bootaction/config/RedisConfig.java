@@ -60,33 +60,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 
     /**
-     * redis key的生成策略
-     * 使用在业务方法时自动生成key的策略
-     */
-    @Override
-    public KeyGenerator keyGenerator() {
-        return new KeyGenerator() {
-            @Override
-            public Object generate(Object o, Method method, Object... objects) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("business:");
-                sb.append(o.getClass().getName()).append(".");
-                sb.append(method.getName()).append("(");
-                for (Object obj :objects) {
-                    sb.append(obj.toString()).append(",");
-                }
-                sb.append(")");
-                return sb.toString();
-            }
-        };
-    }
-
-
-
-    /**
      * 缓存管理器
-     * @param redisTemplate
-     * @return
      */
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate){
