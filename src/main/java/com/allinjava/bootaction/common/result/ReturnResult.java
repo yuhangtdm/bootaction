@@ -80,7 +80,7 @@ public class ReturnResult<T> implements Serializable {
         this.data = null;
     }
 
-    public ReturnResult(ResultEnum resultEnum){
+    private ReturnResult(ResultEnum resultEnum){
         this.code = resultEnum.getCode();
         this.msg = resultEnum.getMsg();
     }
@@ -107,12 +107,12 @@ public class ReturnResult<T> implements Serializable {
         this.data = data;
     }
 
-    public ReturnResult(HttpStatus status){
+    private ReturnResult(HttpStatus status){
         this.code = status.value();
         this.msg = status.getReasonPhrase();
     }
 
-    public ReturnResult(HttpStatus status,Long count,T data,String desc){
+    private ReturnResult(HttpStatus status,Long count,T data,String desc){
         this.code = status.value();
         this.msg = status.getReasonPhrase();
         this.count = count;
@@ -120,14 +120,14 @@ public class ReturnResult<T> implements Serializable {
         this.desc = desc;
     }
 
-    public ReturnResult(HttpStatus status,Long count,T data){
+    private ReturnResult(HttpStatus status,Long count,T data){
         this.code = status.value();
         this.msg = status.getReasonPhrase();
         this.count = count;
         this.data = data;
     }
 
-    public ReturnResult(HttpStatus status,T data){
+    private ReturnResult(HttpStatus status,T data){
         this.code = status.value();
         this.msg = status.getReasonPhrase();
         this.count = 1L;
@@ -135,18 +135,16 @@ public class ReturnResult<T> implements Serializable {
     }
 
 
-
-
     public static <T> ReturnResult<T> success(){
-        return new ReturnResult(HttpStatus.OK);
+        return new ReturnResult<T>(HttpStatus.OK);
     }
 
     public static <T> ReturnResult<T> success(T data){
-        return new ReturnResult(HttpStatus.OK,data);
+        return new ReturnResult<T>(HttpStatus.OK,data);
     }
 
     public static <T> ReturnResult<T> success(T data,Long count){
-        return new ReturnResult(HttpStatus.OK,count,data);
+        return new ReturnResult<T>(HttpStatus.OK,count,data);
     }
 
     public static <T> ReturnResult<T> success(T data,Long count,String desc){
@@ -154,14 +152,14 @@ public class ReturnResult<T> implements Serializable {
     }
 
     public static <T> ReturnResult<T> error(){
-        return new ReturnResult(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ReturnResult<T>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     public static <T> ReturnResult<T> error(HttpStatus status){
-        return new ReturnResult(status);
+        return new ReturnResult<T>(status);
     }
 
     public static <T> ReturnResult<T> error(ResultEnum status){
-        return new ReturnResult(status);
+        return new ReturnResult<T>(status);
     }
 }
