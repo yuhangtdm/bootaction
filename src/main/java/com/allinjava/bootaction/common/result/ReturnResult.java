@@ -137,31 +137,31 @@ public class ReturnResult<T> implements Serializable {
 
 
 
-    public static ReturnResult success(){
+    public static <T> ReturnResult<T> success(){
         return new ReturnResult(HttpStatus.OK);
     }
 
-    public static <T> ReturnResult success(T data){
+    public static <T> ReturnResult<T> success(T data){
         return new ReturnResult(HttpStatus.OK,data);
     }
 
-    public static <T> ReturnResult success(T data,Long count){
+    public static <T> ReturnResult<T> success(T data,Long count){
         return new ReturnResult(HttpStatus.OK,count,data);
     }
 
-    public static <T> ReturnResult success(T data,Long count,String desc){
-        return new ReturnResult(HttpStatus.OK,count,data,desc);
+    public static <T> ReturnResult<T> success(T data,Long count,String desc){
+        return new ReturnResult<T>(HttpStatus.OK,count,data,desc);
     }
 
-    public static <T> ReturnResult error(){
+    public static <T> ReturnResult<T> error(){
         return new ReturnResult(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    public static <T> ReturnResult error(HttpStatus status){
+    public static <T> ReturnResult<T> error(HttpStatus status){
         return new ReturnResult(status);
     }
 
-    public static <T> ReturnResult error(ResultEnum status){
+    public static <T> ReturnResult<T> error(ResultEnum status){
         return new ReturnResult(status);
     }
 }
