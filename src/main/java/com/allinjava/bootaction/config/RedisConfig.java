@@ -3,18 +3,21 @@ package com.allinjava.bootaction.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Maps;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCachePrefix;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * redis的配置类
@@ -64,6 +67,21 @@ public class RedisConfig extends CachingConfigurerSupport {
      */
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate){
-        return new RedisCacheManager(redisTemplate);
+//        return new RedisCacheManager(redisTemplate);
+        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
+        redisCacheManager.setTransactionAware(true);
+        redisCacheManager.setUsePrefix(true);
+        redisCacheManager.setCachePrefix(new RedisCachePrefix() {
+            @Override
+            public byte[] prefix(String cacheName) {
+                return "yh".getBytes();
+            }
+        });
+        //set the expire time
+//        redisCacheManager.setDefaultExpiration(redisCacheProperties.getExpireTime());
+        // set the expire map
+        Map<String, Long> map = Maps.newConcurrentMap();
+        redisCacheManager.setExpires(map);
+        return redisCacheManager;
     }
 }

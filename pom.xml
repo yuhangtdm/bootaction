@@ -108,10 +108,10 @@
 		</dependency>
 
 		<!-- 用于springboot的配置文件和配置类进行绑定时做提示 -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring‐boot‐configuration‐processor</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
